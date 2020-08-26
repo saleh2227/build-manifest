@@ -140,7 +140,7 @@ repo init -u <manifest-repository> -b <branch> -m <manifest.xml>
 
 e.g.
 ```shell
-repo init -u https://gitlab.devtools.intel.com/sst/isecl/repo-manifest.git -b v3.0/develop -m manifest/vmc.xml
+repo init -u https://github.com/intel-secl/build-manifest.git -b refs/tags/v3.0.0 -m manifest/vmc.xml
 ```
 
 ### Pull codes and make file
