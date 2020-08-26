@@ -1,30 +1,30 @@
 <manifest>
-    <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
-    <default revision="v3.0/develop"/>
+	<remote name="github.com" fetch="https://github.com" />
+    <default revision="refs/tags/v3.0.0"/>
 
-    <project name="sst/isecl/authservice" remote="gitlab.devtools.intel.com" path="authservice" groups="authservice_grp"/>
+    <project name="intel-secl/authservice" remote="github.com" path="authservice"/>
 
-    <project name="sst/isecl/certificate-management-service" remote="gitlab.devtools.intel.com" path="certificate-management-service" groups="certificate-management-service_grp"/>
+    <project name="intel-secl/certificate-management-service" remote="github.com" path="certificate-management-service"/>
     
-    <project name="sst/isecl/sgx-caching-service" remote="gitlab.devtools.intel.com" path="sgx-caching-service" groups="sgx-caching-service_grp"/>
+    <project name="intel-secl/sgx-caching-service" remote="github.com" path="sgx-caching-service"/>
     
-    <project name="sst/isecl/sgx-verification-service" remote="gitlab.devtools.intel.com" path="sgx-verification-service" groups="sgx-verification-service_grp"/>
+    <project name="intel-secl/sgx-verification-service" remote="github.com" path="sgx-verification-service"/>
     
-    <project name="sst/isecl/contrib" remote="gitlab.devtools.intel.com" path="contrib"/>
+    <project name="intel-secl/contrib" remote="github.com" path="contrib"/>
 
-    <project name="sst/isecl/external-artifacts" remote="gitlab.devtools.intel.com" path="external-artifacts"/>
+    <project name="intel-secl/external-artifacts" remote="github.com" path="external-artifacts"/>
 
-    <project name="sst/isecl/common-java" remote="gitlab.devtools.intel.com" path="common-java" revision="v3.0/develop_skc"/>
+    <project name="intel-secl/common-java" remote="github.com" path="common-java" revision="refs/tags/v3.0.0-skc"/>
 
-    <project name="sst/isecl/key-broker-service" remote="gitlab.devtools.intel.com" path="key-broker-service" revision="v3.0/develop_skc"/>
+    <project name="intel-secl/key-broker-service" remote="github.com" path="key-broker-service" revision="refs/tags/v3.0.0-skc"/>
 
-    <project name="sst/isecl/sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs" groups="sgx-hvs_grp"/>
+    <project name="intel-secl/sgx-hvs" remote="github.com" path="sgx-hvs"/>
     
-    <project name="sst/isecl/sgx-ah" remote="gitlab.devtools.intel.com" path="sgx-ah" groups="sgx-ah_grp"/>
+    <project name="intel-secl/sgx-ah" remote="github.com" path="sgx-ah"/>
     
-    <project name="sst/isecl/skc-tools" remote="gitlab.devtools.intel.com" path="skc-tools" groups="sgx-tools_grp"/>
+    <project name="intel-secl/skc-tools" remote="github.com" path="skc-tools"/>
 
-    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
+    <project name="intel-secl/build-manifest" remote="github.com" path="build-manifest">
         <copyfile src="makefile/skc" dest="Makefile" />
     </project>
 </manifest>
