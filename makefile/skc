@@ -1,5 +1,5 @@
-TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-agent sgx-hvs sgx-ah 
-KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
+TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-hvs sgx-ah
+KBS_DEPENDENCIES = external-artifacts contrib common-java
 
 all: $(TARGETS) kbs
 
