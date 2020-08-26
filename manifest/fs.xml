@@ -1,0 +1,19 @@
+<manifest>
+
+    <remote fetch="https://github.com" name="github.com" />
+
+    <default revision="refs/tags/v3.0.0" />
+
+    <project name="intel-secl/certificate-management-service" path="certificate-management-service" remote="github.com" />
+
+    <project name="intel-secl/authservice" path="authservice" remote="github.com" />
+
+    <project name="intel-secl/intel-secl" path="intel-secl" remote="github.com" />
+
+    <project name="intel-secl/go-trustagent" path="trust-agent" remote="github.com" />
+
+    <project name="intel-secl/build-manifest" remote="github.com" path="build-manifest">
+        <copyfile src="makefile/fs" dest="Makefile" />
+    </project>
+
+</manifest>

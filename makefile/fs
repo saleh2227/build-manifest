@@ -1,0 +1,8 @@
+TARGETS = authservice certificate-management-service intel-secl trust-agent
+
+all: $(TARGETS)
+
+$(TARGETS):
+	cd $@ && make installer
+
+.PHONY: all $(TARGETS)

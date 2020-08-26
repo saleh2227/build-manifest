@@ -1,0 +1,22 @@
+TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-agent sgx-hvs sgx-ah 
+KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
+
+all: $(TARGETS) kbs
+
+kbs-%:
+	cd $* && ant build
+
+kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
+	cd key-broker-service && \
+	ant ready clean -Dmtwilson3=true && \
+	cd maven &&\
+	mvn -DskipTests=true clean install -U && \
+	cd ../features/ && \
+	mvn clean -DskipTests=true -Ddependency.locations.enabled=false -Drelease -Dmtwilson3=true install -U && \
+	cd ../packages/ && \
+	mvn clean install -DskipTests=true -Dmtwilson3=true -U
+
+$(TARGETS):
+	cd $@ && make installer
+
+.PHONY: all kbs $(TARGETS)
