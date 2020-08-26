@@ -154,7 +154,9 @@ repo sync
 ```shell
 make all
 ```
-
+For Secure Key Caching Use case, to deploy about built components, please refer to "Building & Deployment of Services" section in skc-tools/README.md
+Also for Secure Key Caching use case, SGX Agent and SKC Library components need to be built separately.
+Please refer to "Build & Deployment of SGX Agent & SKC Library" section in  skc-tools/README.md
 
 ## Known Issues
 
