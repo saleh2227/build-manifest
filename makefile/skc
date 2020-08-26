@@ -4,7 +4,7 @@ KBS_DEPENDENCIES = external-artifacts contrib common-java
 all: $(TARGETS) kbs
 
 kbs-%:
-	cd $* && ant build
+	cd $* && ant
 
 kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
 	cd key-broker-service && \
