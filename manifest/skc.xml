@@ -10,11 +10,13 @@
     
     <project name="sst/isecl/sgx-verification-service" remote="gitlab.devtools.intel.com" path="sgx-verification-service" groups="sgx-verification-service_grp"/>
     
-    <project name="sst/isecl/sgx_agent" remote="gitlab.devtools.intel.com" path="sgx-agent" groups="sgx_agent_grp"/>
-    
-    <project name="sst/isecl/key-broker-service" remote="gitlab.devtools.intel.com" path="key-broker-service" revision="v3.0/develop_skc"/>
+    <project name="sst/isecl/contrib" remote="gitlab.devtools.intel.com" path="contrib"/>
+
+    <project name="sst/isecl/external-artifacts" remote="gitlab.devtools.intel.com" path="external-artifacts"/>
 
     <project name="sst/isecl/common-java" remote="gitlab.devtools.intel.com" path="common-java" revision="v3.0/develop_skc"/>
+
+    <project name="sst/isecl/key-broker-service" remote="gitlab.devtools.intel.com" path="key-broker-service" revision="v3.0/develop_skc"/>
 
     <project name="sst/isecl/sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs" groups="sgx-hvs_grp"/>
     
@@ -22,7 +24,7 @@
     
     <project name="sst/isecl/skc-tools" remote="gitlab.devtools.intel.com" path="skc-tools" groups="sgx-tools_grp"/>
 
-    <project name="sst/isecl/repo-manifest" remote="gitlab.devtools.intel.com" path="repo-manifest">
+    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
         <copyfile src="makefile/skc" dest="Makefile" />
     </project>
 </manifest>
