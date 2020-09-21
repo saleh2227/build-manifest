@@ -1,7 +1,17 @@
 TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-hvs sgx-ah
-KBS_DEPENDENCIES = external-artifacts contrib common-java
+KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
 
 all: $(TARGETS) kbs
+	mkdir binaries
+	cp intel-secl/deployments/installer/*.bin binaries/
+	cp authservice/out/*.bin binaries/
+	cp certificate-management-service/out/*.bin binaries/
+	cp sgx-caching-service/out/*.bin binaries/
+	cp sgx-verification-service/out/*.bin binaries/
+	cp sgx-hvs/out/*.bin binaries/
+	cp sgx-ah/out/*.bin binaries/
+
+clean: $(patsubst %, %-clean, $(TARGETS))
 
 kbs-%:
 	cd $* && ant
@@ -19,4 +29,7 @@ kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
 $(TARGETS):
 	cd $@ && make installer
 
-.PHONY: all kbs $(TARGETS)
+%-clean:
+	cd $* && make clean
+
+.PHONY: all clean kbs $(TARGETS)

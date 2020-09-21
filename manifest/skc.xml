@@ -24,7 +24,7 @@
     
     <project name="intel-secl/skc-tools" remote="github.com" path="skc-tools" />
 
-    <project name="intel-secl/build-manifest" remote="github.com" path="build-manifest">
-        <copyfile src="makefile/skc" dest="Makefile" />
+    <project name="sst/isecl/build-manifest" remote="github.com" path="build-manifest">
+        <copyfile src="scripts/skc" dest="Makefile" />
     </project>
 </manifest>
