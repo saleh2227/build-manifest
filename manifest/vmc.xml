@@ -28,7 +28,7 @@
 
     <project name="intel-secl/workload-agent" remote="github.com" path="workload-agent" />
 
-    <project name="intel-secl/build-manifest" remote="github.com" path="build-manifest">
-        <copyfile src="makefile/vmc" dest="Makefile" />
+    <project name="sst/isecl/build-manifest" remote="github.com" path="build-manifest">
+        <copyfile src="scripts/vmc" dest="Makefile" />
     </project>
 </manifest>

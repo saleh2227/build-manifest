@@ -1,4 +1,3 @@
-
 <manifest>
     <remote name="github.com" fetch="https://github.com" />
     <default revision="refs/tags/v3.0.0"/>
@@ -31,7 +30,7 @@
 
     <project name="intel-secl/workload-agent" remote="github.com" path="workload-agent" />
 
-    <project name="intel-secl/build-manifest" remote="github.com" path="build-manifest">
-        <copyfile src="makefile/cc" dest="Makefile" />
+    <project name="sst/isecl/build-manifest" remote="github.com" path="build-manifest">
+        <copyfile src="scripts/cc" dest="Makefile" />
     </project>
 </manifest>

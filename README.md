@@ -121,16 +121,33 @@ Secure Key Caching | \- | `manifest/skc.xml`
   ```shell
   vi /usr/local/bin/repo
   ```
-  
-## Usage
 
-### Run Pre-requisites setup script
+### Required packages for building `Foundational Security`
 
-```shell
-./prereqs.sh -s
+```
+makeself-2.2.0-3.el7.noarch.rpm
+tpm2-abrmd-devel-2.1.1-3.el8.x86_64.rpm
+trousers-devel-0.3.14-4.el8.x86_64.rpm
+containerd.io-1.2.10-3.2.el7.x86_64.rpm
+docker-ce-19.03.5
+wget
+gcc
+gcc-c++
+ant
+git
+patch
+zip
+unzip
+java-1.8.0-openjdk-devel.x86_64
+make
+tpm2-tss-2.0.0-4.el8.x86_64
+tpm2-abrmd-2.1.1-3.el8.x86_64
+openssl-devel
 ```
 
-> **Note:** `docker-ce`, version `19.03.5` will be installed as pre-requisites during run the build scripts. 
+Reference [Sample Script](scripts/foundational-security-sample-prereq-script.sh) for more details
+
+## Usage
 
 ### Pull manifest for use case
 
