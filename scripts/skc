@@ -4,8 +4,8 @@ KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
 all: $(TARGETS) kbs
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
-	cp authservice/out/*.bin binaries/
-	cp certificate-management-service/out/*.bin binaries/
+	cp authservice/out/* binaries/
+	cp certificate-management-service/out/* binaries/
 	cp sgx-caching-service/out/*.bin binaries/
 	cp sgx-verification-service/out/*.bin binaries/
 	cp sgx-hvs/out/*.bin binaries/
