@@ -30,10 +30,10 @@ kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
 	mvn clean install -DskipTests=true -Dmtwilson3=true -U
 
 sgx_agent:
-	cd skc-tools/sgx_agent/build_scripts/ && sh sgxagent_build.sh
+	cd skc-tools/sgx_agent/build_scripts/ && ./sgxagent_build.sh
 	
 skc_library:
-	cd skc-tools/skc_library/build_scripts/ && sh skc_library_build.sh
+	cd skc-tools/skc_library/build_scripts/ && ./skc_library_build.sh
 	
 $(TARGETS):
 	cd $@ && make installer
