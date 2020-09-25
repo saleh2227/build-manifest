@@ -1,7 +1,7 @@
 TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-hvs sgx-ah
 KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
 
-all: $(TARGETS) kbs
+all: $(TARGETS) kbs sgx_agent skc_library
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
 	cp authservice/out/* binaries/
@@ -10,6 +10,10 @@ all: $(TARGETS) kbs
 	cp sgx-verification-service/out/*.bin binaries/
 	cp sgx-hvs/out/*.bin binaries/
 	cp sgx-ah/out/*.bin binaries/
+	cp skc-tools/sgx_agent/build_scripts/sgx_agent.* binaries/
+	cp skc-tools/sgx_agent/build_scripts/untar.sh binaries/agent_untar.sh
+	cp skc-tools/skc_library/build_scripts/skc_library.* binaries/
+	cp skc-tools/skc_library/build_scripts/untar.sh binaries/skclib_untar.sh
 
 clean: $(patsubst %, %-clean, $(TARGETS))
 
@@ -26,6 +30,14 @@ kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
 	cd ../packages/ && \
 	mvn clean install -DskipTests=true -Dmtwilson3=true -U
 
+sgx_agent:
+	cd skc-tools/sgx_agent/build_scripts/
+	./sgxagent_build.sh
+	
+skc_library:
+	cd skc-tools/skc_library/build_scripts/
+	./skc_library_build.sh
+	
 $(TARGETS):
 	cd $@ && make installer
 

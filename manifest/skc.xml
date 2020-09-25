@@ -1,30 +1,34 @@
 <manifest>
-    <remote name="github.com" fetch="https://github.com" />
-    <default revision="refs/tags/v3.0.0"/>
+    <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
+    <default revision="v3.1/develop"/>
 
-    <project name="intel-secl/certificate-management-service" remote="github.com" path="certificate-management-service" />
+    <project name="intel-secl/certificate-management-service" path="certificate-management-service" />
 
-    <project name="intel-secl/authservice" remote="github.com" path="authservice" />
+    <project name="intel-secl/authservice" path="authservice" />
     
-    <project name="intel-secl/sgx-caching-service" remote="github.com" path="sgx-caching-service" />
+    <project name="intel-secl/sgx-caching-service" path="sgx-caching-service" />
     
-    <project name="intel-secl/sgx-verification-service" remote="github.com" path="sgx-verification-service" />
+    <project name="intel-secl/sgx-verification-service" path="sgx-verification-service" />
     
-    <project name="intel-secl/contrib" remote="github.com" path="contrib" />
+    <project name="intel-secl/contrib" path="contrib" />
 
-    <project name="intel-secl/external-artifacts" remote="github.com" path="external-artifacts" />
+    <project name="intel-secl/external-artifacts" path="external-artifacts" />
 
-    <project name="intel-secl/common-java" remote="github.com" path="common-java" revision="refs/tags/v3.0.0-skc" />
+    <project name="intel-secl/common-java" path="common-java" revision="v3.0/develop_skc" />
 
-    <project name="intel-secl/key-broker-service" remote="github.com" path="key-broker-service" revision="refs/tags/v3.0.0-skc" />
+    <project name="intel-secl/key-broker-service" path="key-broker-service" revision="v3.0/develop_skc" />
 
-    <project name="intel-secl/sgx-hvs" remote="github.com" path="sgx-hvs" />
+    <project name="intel-secl/sgx-hvs" path="sgx-hvs" />
     
-    <project name="intel-secl/sgx-ah" remote="github.com" path="sgx-ah" />
-    
-    <project name="intel-secl/skc-tools" remote="github.com" path="skc-tools" />
+    <project name="intel-secl/sgx-ah" path="sgx-ah" />
 
-    <project name="sst/isecl/build-manifest" remote="github.com" path="build-manifest">
+    <project name="intel-secl/sgx_agent" path="sgx_agent" />
+
+    <project name="intel-secl/skc_library" path="skc_library" />
+    
+    <project name="intel-secl/skc-tools" path="skc-tools" />
+
+    <project name="sst/isecl/build-manifest" path="build-manifest">
         <copyfile src="scripts/skc" dest="Makefile" />
     </project>
 </manifest>
