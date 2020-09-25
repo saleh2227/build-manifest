@@ -4,7 +4,7 @@
 
     <project name="intel-secl/certificate-management-service" path="certificate-management-service" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/authservice" path="authservice" remote="gitlab.devtools.intel.com" remote="gitlab.devtools.intel.com" />
+    <project name="intel-secl/authservice" path="authservice" remote="gitlab.devtools.intel.com" />
     
     <project name="intel-secl/sgx-caching-service" path="sgx-caching-service" remote="gitlab.devtools.intel.com" />
     
@@ -14,9 +14,9 @@
 
     <project name="intel-secl/external-artifacts" path="external-artifacts" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/common-java" path="common-java" revision="v3.0/develop_skc" remote="gitlab.devtools.intel.com" />
+    <project name="intel-secl/common-java" path="common-java" remote="gitlab.devtools.intel.com" revision="v3.0/develop_skc" />
 
-    <project name="intel-secl/key-broker-service" path="key-broker-service" revision="v3.0/develop_skc" remote="gitlab.devtools.intel.com" />
+    <project name="intel-secl/key-broker-service" path="key-broker-service" remote="gitlab.devtools.intel.com" revision="v3.0/develop_skc" />
 
     <project name="intel-secl/sgx-hvs" path="sgx-hvs" remote="gitlab.devtools.intel.com" />
     
