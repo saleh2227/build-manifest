@@ -2,33 +2,33 @@
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
     <default revision="v3.1/develop"/>
 
-    <project name="intel-secl/certificate-management-service" path="certificate-management-service" />
+    <project name="intel-secl/certificate-management-service" path="certificate-management-service" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/authservice" path="authservice" />
+    <project name="intel-secl/authservice" path="authservice" remote="gitlab.devtools.intel.com" remote="gitlab.devtools.intel.com" />
     
-    <project name="intel-secl/sgx-caching-service" path="sgx-caching-service" />
+    <project name="intel-secl/sgx-caching-service" path="sgx-caching-service" remote="gitlab.devtools.intel.com" />
     
-    <project name="intel-secl/sgx-verification-service" path="sgx-verification-service" />
+    <project name="intel-secl/sgx-verification-service" path="sgx-verification-service" remote="gitlab.devtools.intel.com" />
     
-    <project name="intel-secl/contrib" path="contrib" />
+    <project name="intel-secl/contrib" path="contrib" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/external-artifacts" path="external-artifacts" />
+    <project name="intel-secl/external-artifacts" path="external-artifacts" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/common-java" path="common-java" revision="v3.0/develop_skc" />
+    <project name="intel-secl/common-java" path="common-java" revision="v3.0/develop_skc" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/key-broker-service" path="key-broker-service" revision="v3.0/develop_skc" />
+    <project name="intel-secl/key-broker-service" path="key-broker-service" revision="v3.0/develop_skc" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/sgx-hvs" path="sgx-hvs" />
+    <project name="intel-secl/sgx-hvs" path="sgx-hvs" remote="gitlab.devtools.intel.com" />
     
-    <project name="intel-secl/sgx-ah" path="sgx-ah" />
+    <project name="intel-secl/sgx-ah" path="sgx-ah" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/sgx_agent" path="sgx_agent" />
+    <project name="intel-secl/sgx_agent" path="sgx_agent" remote="gitlab.devtools.intel.com" />
 
-    <project name="intel-secl/skc_library" path="skc_library" />
+    <project name="intel-secl/skc_library" path="skc_library" remote="gitlab.devtools.intel.com" />
     
-    <project name="intel-secl/skc-tools" path="skc-tools" />
+    <project name="intel-secl/skc-tools" path="skc-tools" remote="gitlab.devtools.intel.com" />
 
-    <project name="sst/isecl/build-manifest" path="build-manifest">
+    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
         <copyfile src="scripts/skc" dest="Makefile" />
     </project>
 </manifest>
