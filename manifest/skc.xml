@@ -20,7 +20,7 @@
 
     <project name="sst/isecl/sgx-hvs" path="sgx-hvs" remote="gitlab.devtools.intel.com" />
     
-    <project name="sst/isecl/sgx-ah" path="sgx-ah" remote="gitlab.devtools.intel.com" />
+    <project name="sst/isecl/intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
 
     <project name="sst/isecl/sgx_agent" path="sgx_agent" remote="gitlab.devtools.intel.com" />
 
