@@ -16,7 +16,7 @@ all: pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	mv utils/build/skc-tools/skc_library/untar.sh binaries/skclib_untar.sh
 
 pre-reqs:
-	cd utils/build/skc-tools/ && ./prereqs.sh -s
+	cd utils/build/skc-tools/ && chmod +x prereqs.sh && ./prereqs.sh -s
 
 clean: $(patsubst %, %-clean, $(TARGETS))
 
