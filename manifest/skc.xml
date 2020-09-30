@@ -14,9 +14,9 @@
 
     <project name="sst/isecl/external-artifacts" path="external-artifacts" remote="gitlab.devtools.intel.com" />
 
-    <project name="sst/isecl/common-java" path="common-java" remote="gitlab.devtools.intel.com" revision="v3.0/develop_skc" />
+    <project name="sst/isecl/common-java" path="common-java" remote="gitlab.devtools.intel.com" revision="v3.1/develop-skc" />
 
-    <project name="sst/isecl/key-broker-service" path="key-broker-service" remote="gitlab.devtools.intel.com" revision="v3.0/develop_skc" />
+    <project name="sst/isecl/key-broker-service" path="key-broker-service" remote="gitlab.devtools.intel.com" revision="v3.1/develop-skc" />
 
     <project name="sst/isecl/sgx-hvs" path="sgx-hvs" remote="gitlab.devtools.intel.com" />
     
