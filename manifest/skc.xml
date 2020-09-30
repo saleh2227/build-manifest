@@ -28,7 +28,7 @@
     
     <project name="sst/isecl/utils" path="utils" remote="gitlab.devtools.intel.com" />
 
-    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" revision="v3.1/skc-gitlab" path="build-manifest">
+    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
         <copyfile src="scripts/skc" dest="Makefile" />
     </project>
 </manifest>
