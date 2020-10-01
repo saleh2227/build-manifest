@@ -63,7 +63,7 @@ Secure Key Caching | \- | `manifest/skc.xml`
   rm -rf $tmpdir
   ```
 
-* Extract Install `go` version > `go1.11.4` & <= `go1.14.1` from `https://golang.org/dl/` and set `GOROOT` & `PATH`
+* Extract Install `go` version > `go1.13` & <= `go1.14.4` from `https://golang.org/dl/` and set `GOROOT` & `PATH`
 
   ```shell
   export GOROOT=<path_to_go>
@@ -161,7 +161,7 @@ repo init -u <manifest-repository> -b <branch> -m <manifest.xml>
 
 e.g.
 ```shell
-repo init -u https://github.com/intel-secl/build-manifest.git -b refs/tags/v3.0.0 -m manifest/vmc.xml
+repo init -u https://github.com/intel-secl/build-manifest.git -b refs/tags/v3.1.0 -m manifest/fs.xml
 ```
 
 ### Pull codes and make file
