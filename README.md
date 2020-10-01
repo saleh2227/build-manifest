@@ -37,7 +37,7 @@ Secure Key Caching | \- | `manifest/skc.xml`
   * `rhel-8-for-x86_64-appstream-rpms`
   * `rhel-8-for-x86_64-baseos-rpms`
 
-* For Secure Key Caching Use case, In addition, enable following RHEL repo
+* For **Secure Key Caching** use case, In addition, enable following RHEL repo
 
   * `codeready-builder-for-rhel-8-x86_64-rpms`
 
@@ -132,7 +132,7 @@ Secure Key Caching | \- | `manifest/skc.xml`
     </proxies> 
     ```
 
-* Following packages need to be installed for only building **Foundational Security** & **Workload Security** usecases
+* Additional packages for **Foundational Security** & **Workload Security** usecase
 
   ```shell
   dnf install java-1.8.0-openjdk.x86_64 wget gcc gcc-c++ ant git patch zip unzip make tpm2-tss-2.0.0-4.el8.x86_64 tpm2-abrmd-2.1.1-3.el8.x86_64 openssl-devel
@@ -145,6 +145,32 @@ Secure Key Caching | \- | `manifest/skc.xml`
                  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm \
                  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-19.03.5-3.el7.x86_64.rpm \
                  https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-19.03.5-3.el7.x86_64.rpm 
+  ```
+
+* Enable and start the Docker daemon
+
+  ```shell
+  systemctl enable docker
+  systemctl start docker
+  ```
+
+* If Running behind a proxy, configure docker to run behind proxy
+
+  ```shell
+  mkdir -p /etc/systemd/system/docker.service.d
+  touch /etc/systemd/system/docker.service.d/proxy.conf
+  
+  #Add the below lines in proxy.conf
+  [Service]
+  Environment="HTTP_PROXY=<http_proxy>"
+  Environment="HTTPS_PROXY=<https_proxy>"
+  Environment="NO_PROXY=<no_proxy>"
+  ```
+
+  ```shell
+  #Reload docker
+  systemctl daemon-reload
+  systemctl restart docker
   ```
 
 Reference [Sample Script](scripts/foundational-security-sample-prereq-script.sh) for more details
