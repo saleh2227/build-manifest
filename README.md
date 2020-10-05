@@ -176,6 +176,16 @@ Secure Key Caching | \- | `manifest/skc.xml`
 Reference [Sample Script](scripts/foundational-security-sample-prereq-script.sh) for more details
 
 
+* Additional packages for **Secure Key Caching** usecase
+
+  ```shell
+  dnf install java-1.8.0-openjdk.x86_64 wget gcc gcc-c++ ant git patch zip make openssl-devel
+  ```
+    
+  ```shell
+  dnf install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/m/makeself-2.2.0-3.el7.noarch.rpm
+  ```
+
 
 ## Usage
 
@@ -201,10 +211,6 @@ repo sync
 ```shell
 make all
 ```
-For Secure Key Caching Use case, to deploy about built components, please refer to "Building & Deployment of Services" section in skc-tools/README.md
-Also for Secure Key Caching use case, SGX Agent and SKC Library components need to be built separately.
-Please refer to "Build & Deployment of SGX Agent & SKC Library" section in  skc-tools/README.md
-
 
 
 ## Known Issues
