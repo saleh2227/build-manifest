@@ -1,7 +1,7 @@
 TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-hvs
 KBS_DEPENDENCIES = external-artifacts contrib common-java
 
-all: pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
+all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	mkdir -p binaries/env
 	cp authservice/out/*.bin binaries/
 	cp authservice/out/create_db.sh binaries/
@@ -32,6 +32,7 @@ pre-reqs:
 	cd utils/build/skc-tools/ && ./prereqs.sh -s
 
 clean: $(patsubst %, %-clean, $(TARGETS))
+	rm -rf binaries/
 
 kbs-%:
 	cd $* && ant

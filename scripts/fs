@@ -1,13 +1,14 @@
 TARGETS = authservice certificate-management-service intel-secl trust-agent
 
-all: $(TARGETS)
+all: clean $(TARGETS)
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
-	cp authservice/out/* binaries/
-	cp certificate-management-service/out/* binaries/
+	cp authservice/out/*.* binaries/
+	cp certificate-management-service/out/*.bin binaries/
 	cp trust-agent/out/*.bin binaries/
 
 clean: $(patsubst %, %-clean, $(TARGETS))
+	rm -rf binaries/
 
 $(TARGETS):
 	cd $@ && make installer
