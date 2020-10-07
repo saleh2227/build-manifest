@@ -5,12 +5,14 @@ all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	mkdir -p binaries/env
 	cp authservice/out/*.bin binaries/
 	cp authservice/out/create_db.sh binaries/
+	cp authservice/out/install_pgdb.sh binaries/
 	cp certificate-management-service/out/*.bin binaries/
 	cp sgx-caching-service/out/*.bin binaries/
 	cp sgx-caching-service/dist/linux/scs.env binaries/env
 	cp sgx-caching-service/dist/linux/install_pgscsdb.sh binaries/
 	cp sgx-verification-service/out/*.bin binaries/
 	cp sgx-verification-service/dist/linux/sqvs.env binaries/env
+	cp sgx-verification-service/dist/linux/trusted_rootca.pem binaries/
 	cp sgx-hvs/out/*.bin binaries/
 	cp sgx-hvs/dist/linux/shvs.env binaries/env
 	cp sgx-hvs/dist/linux/install_pgshvsdb.sh binaries/
@@ -27,6 +29,7 @@ all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	cp -pf utils/build/skc-tools/skc_scripts/env/ihub.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/iseclpgdb.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/install_pg.sh binaries/
+	cp -pf utils/build/skc-tools/skc_scripts/install_*.sh binaries/
 
 pre-reqs:
 	cd utils/build/skc-tools/ && ./prereqs.sh -s
