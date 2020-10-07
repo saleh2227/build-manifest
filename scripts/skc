@@ -30,6 +30,7 @@ all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	cp -pf utils/build/skc-tools/skc_scripts/env/iseclpgdb.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/install_pg.sh binaries/
 	cp -pf utils/build/skc-tools/skc_scripts/install_*.sh binaries/
+	cp -pf utils/build/skc-tools/skc_scripts/*.conf binaries/
 
 pre-reqs:
 	cd utils/build/skc-tools/ && ./prereqs.sh -s
