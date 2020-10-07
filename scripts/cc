@@ -10,6 +10,7 @@ all: clean $(TARGETS) kbs
 	cp workload-policy-manager/out/*.bin binaries/
 	cp trust-agent/out/*.bin binaries/
 	cp workload-agent/out/*.bin binaries/
+	cp key-broker-service/packages/kms/target/kms-*.bin binaries/
 
 clean: $(patsubst %, %-clean, $(TARGETS))
 	rm -rf binaries/
