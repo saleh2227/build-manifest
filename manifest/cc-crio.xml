@@ -2,6 +2,8 @@
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
     <default revision="v3.1/develop"/>
 
+    <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
+
     <project name="certificate-management-service" remote="gitlab.devtools.intel.com" path="certificate-management-service" />
 
     <project name="authservice" remote="gitlab.devtools.intel.com" path="authservice" />
@@ -30,7 +32,11 @@
 
     <project name="workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent" />
 
-    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
-        <copyfile src="scripts/cc" dest="Makefile" />
+    <project name="skopeo" remote="github.com/lumjjb" path="skopeo" revision="sample_integration"/>
+
+    <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration"/>
+
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.1/develop">
+        <copyfile src="scripts/cc-crio" dest="Makefile" />
     </project>
 </manifest>

@@ -186,6 +186,17 @@ Reference [Sample Script](scripts/foundational-security-sample-prereq-script.sh)
   dnf install https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/m/makeself-2.2.0-3.el7.noarch.rpm
   ```
 
+* Additional packages for **Container confidentiality using crio and skopeo** usecase
+
+  ```shell
+  yum install -y containerd.io.x86_64 containers-common glib2-devel glibc-devel runc gcc
+  ```
+    
+  ```shell
+   go get github.com/cpuguy83/go-md2man
+   mv /root/go/bin/cpuguy83/go-md2man /usr/bin/
+  ```
+
 
 ## Usage
 
