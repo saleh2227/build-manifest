@@ -11,7 +11,7 @@ all: clean $(TARGETS) kbs
 	cp trust-agent/out/*.bin binaries/
 	cp workload-agent/out/*.bin binaries/
 	cp key-broker-service/packages/kms/target/kms-*.bin binaries/
-	cp isecl-k8s-extensions/out/isecl-k8s-extensions-v*.bin binaries/
+	cp k8s-extensions/out/isecl-k8s-extensions-v*.bin binaries/
 
 clean: $(patsubst %, %-clean, $(TARGETS))
 	rm -rf binaries/
