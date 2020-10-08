@@ -36,6 +36,8 @@
 
     <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration"/>
 
+    <project name="utils" path="utils" remote="gitlab.devtools.intel.com" />
+
     <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.1/develop">
         <copyfile src="scripts/cc-crio" dest="Makefile" />
     </project>

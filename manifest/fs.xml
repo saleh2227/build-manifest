@@ -10,6 +10,8 @@
 
     <project name="go-trust-agent" path="trust-agent" remote="gitlab.devtools.intel.com" />
 
+    <project name="utils" path="utils" remote="gitlab.devtools.intel.com" />
+
     <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
         <copyfile src="scripts/fs" dest="Makefile" />
     </project>

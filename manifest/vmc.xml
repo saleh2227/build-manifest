@@ -28,6 +28,8 @@
 
     <project name="workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent" />
 
+    <project name="utils" path="utils" remote="gitlab.devtools.intel.com" />
+
     <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest">
         <copyfile src="scripts/vmc" dest="Makefile" />
     </project>
