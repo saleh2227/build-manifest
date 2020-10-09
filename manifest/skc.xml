@@ -18,6 +18,7 @@
 
     <project name="sst/isecl/key-broker-service" path="key-broker-service" remote="gitlab.devtools.intel.com" revision="v3.1/develop-skc" />
 
+    <project name="isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" /> revision="v3.0/merge-isecl-skc" />
     <project name="sst/isecl/sgx-hvs" path="sgx-hvs" remote="gitlab.devtools.intel.com" />
     
     <project name="sst/isecl/intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
