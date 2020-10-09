@@ -20,7 +20,8 @@ Use case | Sub-UseCase | manifest
 ---------|---------|----------
 Foundational Security | \- | `manifest/fs.xml`
 Launch Time Protection | VM Confidentiality | `manifest/vmc.xml`
-\- | Container Confidentiality | `manifest/cc.xml`
+\- | Container Confidentiality with Docker Runtime | `manifest/cc-docker.xml`
+Container Confidentiality with CRIO Runtime | \- | `manifest/cc-crio.xml`
 Secure Key Caching | \- | `manifest/skc.xml`
 
 
