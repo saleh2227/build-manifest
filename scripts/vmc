@@ -1,7 +1,7 @@
 TARGETS = authservice certificate-management-service intel-secl workload-service workload-policy-manager trust-agent
 KBS_DEPENDENCIES = external-artifacts contrib common-java lib-common lib-saml
 
-all: clean $(TARGETS) kbs
+all: clean $(TARGETS) workload-agent kbs
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
 	cp authservice/out/*.* binaries/
