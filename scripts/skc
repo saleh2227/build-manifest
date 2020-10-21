@@ -1,5 +1,4 @@
 TARGETS = authservice certificate-management-service sgx-caching-service sgx-verification-service sgx-hvs k8s-extensions
-KBS_DEPENDENCIES = external-artifacts contrib common-java
 
 all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	mkdir -p binaries/env
@@ -17,7 +16,6 @@ all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	cp sgx-hvs/dist/linux/shvs.env binaries/env
 	cp sgx-hvs/dist/linux/install_pgshvsdb.sh binaries/
 	cp intel-secl/deployments/installer/*.bin binaries/
-	cp key-broker-service/packages/kms/target/*.bin binaries/
 	cp k8s-extensions/out/isecl-k8s-extensions-*.bin binaries/
 	cp utils/build/skc-tools/sgx_agent/build_scripts/sgx_agent.* binaries/
 	cp utils/build/skc-tools/sgx_agent/agent_untar.sh binaries/
@@ -26,7 +24,7 @@ all: clean pre-reqs $(TARGETS) ihub kbs sgx_agent skc_library
 	cp utils/build/skc-tools/skc_scripts/aas-util_user-role.sh binaries/
 	cp -pf utils/build/skc-tools/skc_scripts/env/cms.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/authservice.env binaries/env
-	cp -pf utils/build/skc-tools/skc_scripts/env/kms.env binaries/env
+	cp -pf utils/build/skc-tools/skc_scripts/env/kbs.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/ihub.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/iseclpgdb.env binaries/env
 	cp -pf utils/build/skc-tools/skc_scripts/env/install_pg.sh binaries/
@@ -39,18 +37,8 @@ pre-reqs:
 clean: $(patsubst %, %-clean, $(TARGETS))
 	rm -rf binaries/
 
-kbs-%:
-	cd $* && ant
-
-kbs: $(patsubst %, kbs-%, $(KBS_DEPENDENCIES))
-	cd key-broker-service && \
-	ant ready clean -Dmtwilson3=true && \
-	cd maven &&\
-	mvn -DskipTests=true clean install -U && \
-	cd ../features/ && \
-	mvn clean -DskipTests=true -Ddependency.locations.enabled=false -Drelease -Dmtwilson3=true install -U && \
-	cd ../packages/ && \
-	mvn clean install -DskipTests=true -Dmtwilson3=true -U
+kbs:
+	cd intel-secl && make kbs-installer
 
 ihub:
 	cd intel-secl && make ihub-installer
