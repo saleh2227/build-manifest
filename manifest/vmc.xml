@@ -1,28 +1,12 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
     <default revision="v3.2/develop"/>
-
-    <project name="certificate-management-service" remote="gitlab.devtools.intel.com" path="certificate-management-service" />
-
-    <project name="authservice" remote="gitlab.devtools.intel.com" path="authservice" />
     
     <project name="intel-secl" remote="gitlab.devtools.intel.com" path="intel-secl" />
     
     <project name="workload-service" remote="gitlab.devtools.intel.com" path="workload-service" />
 
     <project name="go-workload-policy-manager" remote="gitlab.devtools.intel.com" path="workload-policy-manager" />
-
-    <project name="external-artifacts" remote="gitlab.devtools.intel.com" path="external-artifacts" />
-
-    <project name="contrib" remote="gitlab.devtools.intel.com" path="contrib" />
-
-    <project name="common-java" remote="gitlab.devtools.intel.com" path="common-java" />
-
-    <project name="lib-java/lib-common" remote="gitlab.devtools.intel.com" path="lib-common" />
-
-    <project name="lib-java/lib-saml" remote="gitlab.devtools.intel.com" path="lib-saml" />
-
-    <project name="key-broker-service" remote="gitlab.devtools.intel.com" path="key-broker-service" />
 
     <project name="go-trust-agent" remote="gitlab.devtools.intel.com" path="trust-agent" />
 

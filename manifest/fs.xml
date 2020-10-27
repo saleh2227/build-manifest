@@ -1,10 +1,6 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
     <default revision="v3.2/develop" />
-
-    <project name="certificate-management-service" path="certificate-management-service" remote="gitlab.devtools.intel.com" />
-
-    <project name="authservice" path="authservice" remote="gitlab.devtools.intel.com" />
     
     <project name="intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
 
