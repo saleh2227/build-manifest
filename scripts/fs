@@ -1,6 +1,6 @@
-TARGETS = intel-secl trust-agent
+TARGETS = trust-agent
 
-all: clean $(TARGETS)
+all: clean $(TARGETS) intel-secl
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
 	cp trust-agent/out/*.bin binaries/
@@ -17,4 +17,4 @@ $(TARGETS):
 %-clean:
 	cd $* && make clean
 
-.PHONY: all clean $(TARGETS)
+.PHONY: all clean $(TARGETS) intel-secl

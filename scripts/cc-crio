@@ -9,7 +9,7 @@ all: clean $(TARGETS) workload-agent workload-policy-manager skopeo cri-o
 	cp workload-agent/out/*.bin binaries/
 	cp skopeo/skopeo binaries/
 	cp cri-o/bin/crio binaries/
-	cp k8s-extensions/out/isecl-k8s-extensions-v*.bin binaries/
+	cp k8s-extensions/out/isecl-k8s-extensions-v*.tar.gz binaries/
 
 clean: $(patsubst %, %-clean, $(TARGETS))
 	rm -rf binaries/
