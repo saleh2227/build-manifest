@@ -14,7 +14,7 @@
 
     <project name="sst/isecl/skc_library" path="skc_library" remote="gitlab.devtools.intel.com" />
 
-    <project name="sst/isecl/isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" revision="v3.1/develop-skc" />
+    <project name="sst/isecl/isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" />
     
     <project name="sst/isecl/utils" path="utils" remote="gitlab.devtools.intel.com" />
 
