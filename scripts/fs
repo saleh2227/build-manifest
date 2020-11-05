@@ -3,6 +3,7 @@ TARGETS = trust-agent
 all: clean $(TARGETS) intel-secl
 	mkdir binaries
 	cp intel-secl/deployments/installer/*.bin binaries/
+	cp intel-secl/deployments/installer/*.sh binaries/
 	cp trust-agent/out/*.bin binaries/
 
 clean: $(patsubst %, %-clean, $(TARGETS))
