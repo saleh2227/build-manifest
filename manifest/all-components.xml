@@ -26,9 +26,9 @@
     
     <project name="sgx-verification-service" remote="gitlab.devtools.intel.com" path="sgx-verification-service"/>
     
-    <project name="skc_library" remote="gitlab.devtools.intel.com" path="skc-library"/>
+    <project name="skc_library" remote="gitlab.devtools.intel.com" path="skc_library"/>
     
-    <project name="sgx_agent" remote="gitlab.devtools.intel.com" path="sgx-agent"/>
+    <project name="sgx_agent" remote="gitlab.devtools.intel.com" path="sgx_agent"/>
     
     <project name="sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs"/>
 
