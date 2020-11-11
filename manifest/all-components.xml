@@ -1,28 +1,38 @@
 <manifest>
-    <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
+    <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
     <default revision="v3.2/develop" />
 
-    <project name="sst/isecl/intel-secl" remote="gitlab.devtools.intel.com" path="go-hvs"/>
-    
-    <project name="sst/isecl/go-trust-agent" remote="gitlab.devtools.intel.com" path="go-trust-agent"/>
+    <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
-    <project name="sst/isecl/workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent"/>
+    <project name="intel-secl" remote="gitlab.devtools.intel.com" path="intel-secl"/>
 
-    <project name="sst/isecl/workload-service" remote="gitlab.devtools.intel.com" path="workload-service"/>
+    <project name="go-workload-policy-manager" remote="gitlab.devtools.intel.com" path="workload-policy-manager" />
+    
+    <project name="go-trust-agent" remote="gitlab.devtools.intel.com" path="trust-agent"/>
 
-    <project name="sst/isecl/sgx-caching-service" remote="gitlab.devtools.intel.com" path="sgx-caching-service"/>
+    <project name="workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent"/>
+
+    <project name="workload-service" remote="gitlab.devtools.intel.com" path="workload-service"/>
+
+    <project name="isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" />
+
+    <project name="utils" remote="gitlab.devtools.intel.com" path="utils" />
+
+    <project name="skopeo" remote="github.com/lumjjb" path="skopeo" revision="sample_integration"/>
+
+    <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration"/>
+
+    <project name="sgx-caching-service" remote="gitlab.devtools.intel.com" path="sgx-caching-service"/>
     
-    <project name="sst/isecl/sgx-verification-service" remote="gitlab.devtools.intel.com" path="sgx-verification-service"/>
+    <project name="sgx-verification-service" remote="gitlab.devtools.intel.com" path="sgx-verification-service"/>
     
-    <project name="sst/isecl/skc_library" remote="gitlab.devtools.intel.com" path="skc-library"/>
+    <project name="skc_library" remote="gitlab.devtools.intel.com" path="skc-library"/>
     
-    <project name="sst/isecl/sgx_agent" remote="gitlab.devtools.intel.com" path="sgx-agent"/>
+    <project name="sgx_agent" remote="gitlab.devtools.intel.com" path="sgx-agent"/>
     
-    <project name="sst/isecl/sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs"/>
-    
-    <project name="sst/isecl/sgx-ah" remote="gitlab.devtools.intel.com" path="sgx-ah"/>
-    
-    <project name="sst/isecl/repo-manifest" remote="gitlab.devtools.intel.com" path="repo-manifest">
+    <project name="sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs"/>
+
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab">
         <copyfile src="scripts/all-components" dest="Makefile" />
     </project>
 </manifest>

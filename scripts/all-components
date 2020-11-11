@@ -1,4 +1,4 @@
-TARGETS = intel-secl workload-service workload-policy-manager k8s-extensions trust-agent workload-agent sgx-caching-service sgx-verification-service sgx-hvs kbs
+TARGETS = intel-secl workload-service workload-policy-manager k8s-extensions trust-agent workload-agent sgx-caching-service sgx-verification-service sgx-hvs
 
 all: clean $(TARGETS) skc-all
 	mkdir binaries
