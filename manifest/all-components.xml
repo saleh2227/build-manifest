@@ -16,7 +16,9 @@
 
     <project name="isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" />
 
-    <project name="utils" remote="gitlab.devtools.intel.com" path="utils" />
+    <project name="utils" remote="gitlab.devtools.intel.com" path="utils" >
+        <copyfile src="build/all-components" dest="Makefile" />
+    </project>
 
     <project name="skopeo" remote="github.com/lumjjb" path="skopeo" revision="sample_integration"/>
 
@@ -32,7 +34,5 @@
     
     <project name="sgx-hvs" remote="gitlab.devtools.intel.com" path="sgx-hvs"/>
 
-    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab">
-        <copyfile src="scripts/all-components" dest="Makefile" />
-    </project>
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab"/>
 </manifest>

@@ -16,9 +16,9 @@
 
     <project name="sst/isecl/isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" />
     
-    <project name="sst/isecl/utils" path="utils" remote="gitlab.devtools.intel.com" />
-
-    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab">
-        <copyfile src="scripts/skc" dest="Makefile" />
+    <project name="sst/isecl/utils" path="utils" remote="gitlab.devtools.intel.com" >
+        <copyfile src="build/skc-tools/skc" dest="Makefile" />
     </project>
+
+    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab"/>
 </manifest>
