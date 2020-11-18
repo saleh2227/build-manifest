@@ -15,7 +15,7 @@
     <project name="workload-agent" remote="github.com" path="workload-agent" />
 
     <project name="utils" path="utils" remote="github.com" revision="v3.2/develop">
-        <copyfile src="build/workload-security/cc-crio" dest="Makefile" />
+        <copyfile src="build/workload-security/cc-docker" dest="Makefile" />
     </project>
 
     <project name="build-manifest" remote="github.com" path="build-manifest"/>
