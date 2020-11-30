@@ -1,6 +1,6 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
-    <default revision="v3.2/develop"/>
+    <default revision="v3.3/develop"/>
 
     <project name="sst/isecl/intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
 
@@ -20,5 +20,5 @@
         <copyfile src="build/skc-tools/skc" dest="Makefile" />
     </project>
 
-    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.2/develop-gitlab"/>
+    <project name="sst/isecl/build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.3/develop-gitlab"/>
 </manifest>
