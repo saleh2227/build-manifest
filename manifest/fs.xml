@@ -1,12 +1,12 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v3.3.0" />
+    <default revision="refs/tags/v3.3.1" />
 
     <project name="intel-secl" path="intel-secl" remote="github.com" />
 
     <project name="go-trustagent" path="trust-agent" remote="github.com" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v3.3/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v3.3.1/develop">
         <copyfile src="build/foundational-security/fs" dest="Makefile" />
     </project>
 
