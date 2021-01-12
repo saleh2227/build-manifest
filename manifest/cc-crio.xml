@@ -1,6 +1,6 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
-    <default revision="v3.3/develop"/>
+    <default revision="v3.4/develop"/>
 
     <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
@@ -24,5 +24,5 @@
         <copyfile src="build/workload-security/cc-crio" dest="Makefile" />
     </project>
 
-    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.3/develop-gitlab"/>
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.4/develop-gitlab"/>
 </manifest>
