@@ -1,15 +1,15 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v3.4.0"/>
+    <default revision="refs/tags/v3.4.0" />
 
     <project name="intel-secl" path="intel-secl" remote="github.com" />
 
     <project name="sgx-caching-service" path="sgx-caching-service" remote="github.com" />
-    
+
     <project name="sgx-verification-service" path="sgx-verification-service" remote="github.com" />
-    
+
     <project name="sgx-hvs" path="sgx-hvs" remote="github.com" />
-    
+
     <project name="sgx_agent" path="sgx_agent" remote="github.com" />
 
     <project name="skc_library" path="skc_library" remote="github.com" />
@@ -20,6 +20,6 @@
         <copyfile src="build/skc-tools/skc" dest="Makefile" />
     </project>
 
-    <project name="build-manifest" remote="github.com" path="build-manifest"/>
+    <project name="build-manifest" remote="github.com" path="build-manifest" />
 
 </manifest>
