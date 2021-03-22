@@ -14,12 +14,11 @@
 
     <project name="skc_library" path="skc_library" remote="github.com" />
 
-    <project name="k8s-extensions" path="k8s-extensions" remote="github.com" />
+    <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
     <project name="utils" path="utils" remote="github.com" revision="v3.5/develop">
-        <copyfile src="build/skc-tools/skc" dest="Makefile" />
+        <copyfile src="build/skc-tools/skc_k8s/skc-k8s-multi-node" dest="Makefile" />
     </project>
 
     <project name="build-manifest" remote="github.com" path="build-manifest" />
-
 </manifest>
