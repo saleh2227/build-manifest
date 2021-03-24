@@ -1,6 +1,6 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/sst/isecl/" />
-    <default revision="v3.5/develop" />
+    <default revision="v3.6/develop" />
     
     <project name="intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
 
@@ -10,6 +10,6 @@
         <copyfile src="build/foundational-security/fs" dest="Makefile" />
     </project>
 
-    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest"  revision="v3.5/develop-gitlab"/>
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest"  revision="v3.6/develop-gitlab"/>
 
 </manifest>

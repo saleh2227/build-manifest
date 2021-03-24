@@ -1,6 +1,6 @@
 <manifest>
     <remote name="gitlab.devtools.intel.com" fetch="ssh://git@gitlab.devtools.intel.com:29418/" />
-    <default revision="v3.5/develop"/>
+    <default revision="v3.6/develop"/>
 
     <project name="sst/isecl/intel-secl" path="intel-secl" remote="gitlab.devtools.intel.com" />
 
