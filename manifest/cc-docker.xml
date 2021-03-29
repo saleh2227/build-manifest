@@ -6,17 +6,19 @@
 
     <project name="workload-service" remote="gitlab.devtools.intel.com" path="workload-service" />
 
-    <project name="go-workload-policy-manager" remote="gitlab.devtools.intel.com" path="workload-policy-manager" />
-
     <project name="isecl-k8s-extenstions" remote="gitlab.devtools.intel.com" path="k8s-extensions" />
 
     <project name="go-trust-agent" remote="gitlab.devtools.intel.com" path="trust-agent" />
 
     <project name="workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent" />
 
+    <project name="secure-docker-daemon" remote="gitlab.devtools.intel.com" path="secure-docker-daemon" />
+
+    <project name="secure-docker-plugin" remote="gitlab.devtools.intel.com" path="secure-docker-plugin" />
+
     <project name="utils" path="utils" remote="gitlab.devtools.intel.com" >
         <copyfile src="build/workload-security/cc-docker" dest="Makefile" />
     </project>
 
-    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.6/develop-gitlab"/>
+    <project name="build-manifest" remote="gitlab.devtools.intel.com" path="build-manifest" revision="v3.6/develop-gitlab" />
 </manifest>
