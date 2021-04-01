@@ -6,8 +6,6 @@
     
     <project name="workload-service" remote="gitlab.devtools.intel.com" path="workload-service" />
 
-    <project name="go-workload-policy-manager" remote="gitlab.devtools.intel.com" path="workload-policy-manager" />
-
     <project name="go-trust-agent" remote="gitlab.devtools.intel.com" path="trust-agent" />
 
     <project name="workload-agent" remote="gitlab.devtools.intel.com" path="workload-agent" />

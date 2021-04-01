@@ -5,8 +5,6 @@
     <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
     <project name="intel-secl" remote="gitlab.devtools.intel.com" path="intel-secl"/>
-
-    <project name="go-workload-policy-manager" remote="gitlab.devtools.intel.com" path="workload-policy-manager" />
     
     <project name="go-trust-agent" remote="gitlab.devtools.intel.com" path="trust-agent"/>
 
