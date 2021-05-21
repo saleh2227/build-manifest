@@ -1,18 +1,16 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v3.5.0" />
+    <default revision="refs/tags/v3.6.0" />
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
     <project name="workload-service" remote="github.com" path="workload-service" />
 
-    <project name="workload-policy-manager" remote="github.com" path="workload-policy-manager" />
-
     <project name="go-trustagent" remote="github.com" path="trust-agent" />
 
     <project name="workload-agent" remote="github.com" path="workload-agent" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v3.5/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v3.6/develop">
         <copyfile src="build/workload-security/vmc" dest="Makefile" />
     </project>
 
