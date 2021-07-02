@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v3.6.0" />
+    <default revision="refs/tags/v3.6.1" />
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
@@ -16,7 +16,7 @@
 
     <project name="secure-docker-plugin" remote="github.com" path="secure-docker-plugin" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v3.6/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v3.6.1/develop">
         <copyfile src="build/workload-security/cc-docker" dest="Makefile" />
     </project>
 
