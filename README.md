@@ -8,7 +8,7 @@ Use case | Sub-Usecase | ta | wla | sa | hvs | wls | shvs | sqvs | scs | kbs | i
 ---------|---------|----|-----|----|-----|-----|------|------|-----|-----|----|-----|------|------
 Foundational Security | \- | ✔️ | ❌ | ❌ | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ | ✔️ | ❌ | ✔️ | ✔️
 Launch Time Protection | VM Confidentiality | ✔️ | ✔️ | ❌ | ✔️ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
-\- | Container Confidentiality   & Integrity | ✔️ | ✔️ | ❌ | ✔️ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
+\- | Container Confidentiality | ✔️ | ✔️ | ❌ | ✔️ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
 Secure Key Caching | \- | ❌ | ❌ | ✔️ | ❌ | ❌ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ✔️ | ✔️
 All | \- | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️
 
@@ -18,11 +18,10 @@ Use case | Sub-UseCase | manifest
 ---------|---------|----------
 Foundational Security | \- | `manifest/fs.xml`
 Launch Time Protection | VM Confidentiality | `manifest/vmc.xml`
-\- | Container Confidentiality with Docker Runtime | `manifest/cc-docker.xml`
 Container Confidentiality with CRIO Runtime | \- | `manifest/cc-crio.xml`
 Secure Key Caching | \- | `manifest/skc.xml`
 All Components | \- | `manifest/all-components.xml`
 
-### Quick Start Guides
+## Quick Start Guides
 
-<https://github.com/intel-secl/docs/tree/master/quick-start-guides>
+<https://github.com/intel-secl/docs/tree/v4.0/develop/quick-start-guides>
