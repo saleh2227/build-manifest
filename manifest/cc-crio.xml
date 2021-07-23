@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v4.0.0"/>
+    <default revision="refs/tags/v5.0.0"/>
 
     <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
@@ -18,7 +18,7 @@
 
     <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v4.0/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v5.0/develop">
         <copyfile src="build/workload-security/cc-crio" dest="Makefile" />
     </project>
 

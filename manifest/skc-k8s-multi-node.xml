@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v4.0.0" />
+    <default revision="refs/tags/v5.0.0" />
 
     <project name="intel-secl" path="intel-secl" remote="github.com" />
 
@@ -16,7 +16,7 @@
 
     <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v4.0/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v5.0/develop">
         <copyfile src="build/skc-tools/skc_k8s/skc-k8s-multi-node" dest="Makefile" />
     </project>
 
