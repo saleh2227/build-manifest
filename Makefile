@@ -9,7 +9,7 @@ IMGTAG := "iseclbuilder:${VERSION}"
 DOCKERRUN_PRIV_FLAGS := --privileged  --security-opt seccomp=unconfined --security-opt apparmor=unconfined
 DOCKERRUN_MOUNT_FLAGS := -v `pwd`/out/:/out/
 ifeq ($(PROXY_EXISTS),1)
-	DOCKERBUILD_PROXY_FLAGS = --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} --build-arg no_proxy=${no_proxy},gitlab.devtools.intel.com
+	DOCKERBUILD_PROXY_FLAGS = --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} --build-arg no_proxy=${no_proxy}
 	DOCKERRUN_PROXY_FLAGS = -e http_proxy=${http_proxy} -e https_proxy=${https_proxy} -e no_proxy=${no_proxy}
 else
 	undefine DOCKERBUILD_PROXY_FLAGS
