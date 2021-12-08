@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v4.0.1" />
+    <default revision="refs/tags/v4.1.0-Beta" />
 
     <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
@@ -14,13 +14,9 @@
 
     <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v4.0.1/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v4.1/develop">
         <copyfile src="build/all-components" dest="Makefile" />
     </project>
-
-    <project name="skopeo" remote="github.com/lumjjb" path="skopeo" revision="sample_integration" />
-
-    <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration" />
 
     <project name="sgx-caching-service" path="sgx-caching-service" remote="github.com" />
 
