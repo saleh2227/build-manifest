@@ -18,10 +18,6 @@
         <copyfile src="build/all-components" dest="Makefile" />
     </project>
 
-    <project name="skopeo" remote="github.com/lumjjb" path="skopeo" revision="sample_integration" />
-
-    <project name="cri-o" remote="github.com/lumjjb" path="cri-o" revision="1.16_encryption_sample_integration" />
-
     <project name="sgx-caching-service" path="sgx-caching-service" remote="github.com" />
 
     <project name="sgx-verification-service" path="sgx-verification-service" remote="github.com" />
