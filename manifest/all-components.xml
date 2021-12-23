@@ -10,8 +10,6 @@
 
     <project name="workload-agent" remote="github.com" path="workload-agent" />
 
-    <project name="workload-service" remote="github.com" path="workload-service" />
-
     <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
     <project name="utils" path="utils" remote="github.com" revision="v5.0/develop">

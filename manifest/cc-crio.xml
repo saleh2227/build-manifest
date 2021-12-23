@@ -4,8 +4,6 @@
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
-    <project name="workload-service" remote="github.com" path="workload-service" />
-
     <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
     <project name="go-trustagent" remote="github.com" path="trust-agent" />

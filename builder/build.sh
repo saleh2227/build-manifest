@@ -151,7 +151,6 @@ main() {
         # fixes for k8s build
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/workload-service-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/workload-service:\$\(VERSION\)/' workload-service/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/wlagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/wlagent:\$\(VERSION\)/' workload-agent/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
@@ -171,7 +170,6 @@ main() {
             # fixes for k8s build
             sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
             sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
-            sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/workload-service-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/workload-service:\$\(VERSION\)/' workload-service/Makefile
             sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/wlagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/wlagent:\$\(VERSION\)/' workload-agent/Makefile
             # build targets
             buildTargets vmc $paramTarget
