@@ -155,6 +155,7 @@ main() {
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/wlagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/wlagent:\$\(VERSION\)/' workload-agent/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
+        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/admission-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-admission-controller:\$\(VERSION\)/' k8s-extensions/admission-controller/Makefile
         # build WS targets
         buildTargets crio $paramTarget
     fi
@@ -195,6 +196,7 @@ main() {
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
+        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/admission-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-admission-controller:\$\(VERSION\)/' k8s-extensions/admission-controller/Makefile
         # build WS targets
         buildTargets data-sovereignty $paramTarget
     fi
