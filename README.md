@@ -24,4 +24,4 @@ All Components | \- | `manifest/all-components.xml`
 
 ## Quick Start Guides
 
-<https://github.com/intel-secl/docs/tree/v4.0.1/develop/quick-start-guides>
+<https://github.com/intel-secl/docs/tree/v4.0.2/develop/quick-start-guides>
