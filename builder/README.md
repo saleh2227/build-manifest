@@ -8,7 +8,7 @@ Build-args for development container:
 
 Param Name          | Description                                              | Required | Default Value
 ------------------- | -------------------------------------------------------- | -------- | ----------------
-ISECLRELEASEBRANCH  | Tag or branch name from which manifest files are sourced | No       | refs/tags/v4.1.0
+ISECLRELEASEBRANCH  | Tag or branch name from which manifest files are sourced | No       | refs/tags/v4.1.1
 GO_VERSION          | Version of GoLang SDK used for builds                    | No       | 1.16.7
 EXT_USER            | Runtime user which should own the built artifacts        | No       | root
 REGISTRY_MIRROR_URL | URL for registry mirror for fetching container images    | No       | root
