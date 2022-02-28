@@ -31,13 +31,11 @@ installPrereqs() {
         echo "Installing pre-reqs for FS, WS"
         # cleanup unused repo and pre-reqs
         # remove docker from the pre-req scripts
-        sed -i '/download.docker.com/d' workload-security/ws-prereq.sh
-        sed -i '/docker-ce/d' workload-security/ws-prereq.sh
         sh ./all-components.sh
-        rm -rf /etc/yum.repos.d/docker-ce.repo && dnf -yq remove docker* skopeo* containerd* && \
+        apt-get remove docker docker-engine docker.io containerd runc skopeo && \
         # Configure podman to run inside container - we could use multi-stage here but it will inevitably add more layers
         # sourced from podman:stable Dockerfile - https://github.com/containers/podman/blob/main/contrib/podmanimage/stable/Dockerfile \
-        rpm --restore --quiet shadow-utils && yum -yq install podman fuse-overlayfs --exclude container-selinux && \
+        apt-get -y install podman && \
         mkdir -p /var/lib/containers/ && mkdir -p /root/.local/share/containers/ && mkdir -p /root/.config/containers/ && \
         wget https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/containers.conf -O /etc/containers/containers.conf && \
         wget https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/podman-containers.conf -O /root/.config/containers/containers.conf && \
@@ -157,7 +155,7 @@ main() {
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
         sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/admission-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-admission-controller:\$\(VERSION\)/' k8s-extensions/admission-controller/Makefile
         # build WS targets
-        buildTargets crio $paramTarget
+        buildTargets cc-crio $paramTarget
     fi
 
     #vmc
@@ -223,7 +221,7 @@ if [ -z "$paramUsecase" -o -z  "$paramTarget" ]; then
        installPrereqs
        exit $?
     fi
- 
+
     helpFunction
     exit 0
 fi
