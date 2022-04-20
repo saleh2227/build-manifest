@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v4.1.1" />
+    <default revision="refs/tags/v4.2.0-Beta" />
 
     <remote name="github.com/lumjjb" fetch="https://github.com/lumjjb/" />
 
@@ -14,7 +14,7 @@
 
     <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
 
-    <project name="utils" path="utils" remote="github.com" revision="v4.1.1/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v4.2/develop">
         <copyfile src="build/all-components" dest="Makefile" />
     </project>
 
