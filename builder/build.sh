@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#  Copyright (C) 2021 Intel Corporation
+#  Copyright (C) 2022 Intel Corporation
 #  SPDX-License-Identifier: BSD-3-Clause
 
 # Entrypoint script for iseclbuilder container that helps build components
@@ -11,11 +11,9 @@
 helpFunction() {
     echo ""
     echo "Usage: $0 [-u usecase] [-t target]"
-    echo -e "\t-u Usecase: fs|skc|crio|vmc|all\n"
+    echo -e "\t-u Usecase: fs|crio|all\n"
     echo -e "\t            fs: Foundational Security\n"
-    echo -e "\t            skc: Secure Key Caching\n"
     echo -e "\t            crio: Container Confidentiality w/ CRIO\n"
-    echo -e "\t            vmc: VM Confidentiality\n"
     echo -e "\t            ds: Data Sovereignty\n"
     echo -e "\t            all: All usecases - default\n"
     echo -e "\t-t target: bin|img|all\n"
@@ -31,13 +29,11 @@ installPrereqs() {
         echo "Installing pre-reqs for FS, WS"
         # cleanup unused repo and pre-reqs
         # remove docker from the pre-req scripts
-        sed -i '/download.docker.com/d' workload-security/ws-prereq.sh
-        sed -i '/docker-ce/d' workload-security/ws-prereq.sh
-        sh ./all-components.sh
-        rm -rf /etc/yum.repos.d/docker-ce.repo && dnf -yq remove docker* skopeo* containerd* && \
+        bash ./all-components.sh
+        apt-get remove docker docker-engine docker.io containerd runc skopeo -y && \
         # Configure podman to run inside container - we could use multi-stage here but it will inevitably add more layers
         # sourced from podman:stable Dockerfile - https://github.com/containers/podman/blob/main/contrib/podmanimage/stable/Dockerfile \
-        rpm --restore --quiet shadow-utils && yum -yq install podman fuse-overlayfs --exclude container-selinux && \
+        apt-get -y install podman && \
         mkdir -p /var/lib/containers/ && mkdir -p /root/.local/share/containers/ && mkdir -p /root/.config/containers/ && \
         wget https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/containers.conf -O /etc/containers/containers.conf && \
         wget https://raw.githubusercontent.com/containers/libpod/master/contrib/podmanimage/stable/podman-containers.conf -O /root/.config/containers/containers.conf && \
@@ -89,7 +85,9 @@ buildTargets() {
 }
 
 main() {
-    if [ "$paramUsecase" != "all" -a "$paramUsecase" != "fs" -a "$paramUsecase" != "skc" -a "$paramUsecase" != "crio" -a "$paramUsecase" != "vmc"  -a "$paramUsecase" != "ds" ]; then
+    rm -rf /work/.repo
+    DB_VERSION_UPGRADE_11_14=v11-v14
+    if [ "$paramUsecase" != "all" -a "$paramUsecase" != "fs" -a "$paramUsecase" != "crio" -a "$paramUsecase" != "ds" ]; then
         echo -e "Invalid usecase: $paramUsecase\n"
         helpFunction
         exit 1
@@ -109,34 +107,11 @@ main() {
         find . -name Makefile -exec sed -i 's/env GOOS/go mod tidy \&\& env GOOS/g' {} \;
         installPrereqs
         # fixes for k8s build
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
+        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar localhost\/isecl\/\$\*:\$\(VERSION\)-\$\(GITCOMMIT\)/' intel-secl/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/init-wait.*/podman save --format oci-archive --output init-wait\/init-wait-\$\(VERSION\)\.tar localhost\/isecl\/init-wait:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/nats-init.*/podman save --format oci-archive --output nats\/nats-init-\$\(VERSION\)\.tar localhost\/isecl\/nats-init:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/db-version-upgrade.*/podman save --format oci-archive --output db-version-upgrade\/db-version-upgrade-\$\(DB_VERSION_UPGRADE_11_14\)\.tar localhost\/isecl\/db-version-upgrade:\$\(DB_VERSION_UPGRADE_11_14\)/' utils/tools/containers/Makefile
         buildTargets fs $paramTarget
-    fi
-
-    # build SKC targets
-    if [ "$paramUsecase" == "all" -o "$paramUsecase" == "skc" ]; then
-        mkdir -p /out/skc/
-        mkdir -p /work/skc/ && cd /work/skc/
-        repo init -u /build-manifest/ -b "$ISECLRELEASEBRANCH" -m manifest/skc.xml && repo sync --force-sync
-        find . -name Makefile -exec sed -i 's/env CGO_CFLAGS_ALLOW/go mod tidy \&\& env CGO_CFLAGS_ALLOW/g' {} \;
-        find . -name Makefile -exec sed -i 's/env GOOS/go mod tidy \&\& env GOOS/g' {} \;
-        # Fixes for skc_library install due to EPEL conflict - we don't need EPEL repo in Fedora
-        sed -i '/.*dnf.*epel-release-latest.*/d' skc_library/scripts/common_utils.sh
-        # Fixes for scs build issue
-        echo 'LIB_PATH := /usr/lib64' >>sgx-caching-service/Makefile
-        installPrereqs
-        # fixes for k8s build
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/sqvs-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/sqvs:\$\(VERSION\)/' sgx-verification-service/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/shvs-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/shvs:\$\(VERSION\)/' sgx-hvs/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/scs-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/scs:\$\(VERSION\)/' sgx-caching-service/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/sgx-agent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/sgx-agent:\$\(VERSION\)/' sgx_agent/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/skc-lib-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/skc-lib:\$\(VERSION\)/' skc_library/Makefile.am
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
-        # build SKC targets
-        buildTargets skc $paramTarget
     fi
 
     # build workload confidentiality targets
@@ -149,36 +124,13 @@ main() {
         find . -name Makefile -exec sed -i 's/env GOOS/go mod tidy \&\& env GOOS/g' {} \;
         installPrereqs
         # fixes for k8s build
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/wlagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/wlagent:\$\(VERSION\)/' workload-agent/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/admission-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-admission-controller:\$\(VERSION\)/' k8s-extensions/admission-controller/Makefile
+        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar localhost\/isecl\/\$\*:\$\(VERSION\)-\$\(GITCOMMIT\)/' intel-secl/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/init-wait.*/podman save --format oci-archive --output init-wait\/init-wait-\$\(VERSION\)\.tar localhost\/isecl\/init-wait:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/nats-init.*/podman save --format oci-archive --output nats\/nats-init-\$\(VERSION\)\.tar localhost\/isecl\/nats-init:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/db-version-upgrade.*/podman save --format oci-archive --output db-version-upgrade\/db-version-upgrade-\$\(DB_VERSION_UPGRADE_11_14\)\.tar localhost\/isecl\/db-version-upgrade:\$\(DB_VERSION_UPGRADE_11_14\)/' utils/tools/containers/Makefile
         # build WS targets
-        buildTargets crio $paramTarget
+        buildTargets cc-crio $paramTarget
     fi
-
-    #vmc
-    if [ "$paramUsecase" == "all" -o "$paramUsecase" == "vmc" ]; then
-        if [ "$paramTarget == "binary ]; then
-            mkdir -p /out/vmc/
-            mkdir -p /work/vmc/ && cd /work/vmc/
-            repo init -u /build-manifest/  -b "$ISECLRELEASEBRANCH" -m manifest/vmc.xml && repo sync --force-sync
-            find . -name Makefile -exec sed -i 's/env CGO_CFLAGS_ALLOW/go mod tidy \&\& env CGO_CFLAGS_ALLOW/g' {} \;
-            find . -name Makefile -exec sed -i 's/env GOOS/go mod tidy \&\& env GOOS/g' {} \;
-            installPrereqs
-            # fixes for k8s build
-            sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
-            sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
-            sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/wlagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/wlagent:\$\(VERSION\)/' workload-agent/Makefile
-            # build targets
-            buildTargets vmc $paramTarget
-        else
-            echo "Only binary build is supported for VMC usecase"
-        fi
-    fi
-
 
     # build data sovereignty targets
     # ds
@@ -189,12 +141,11 @@ main() {
         find . -name Makefile -exec sed -i 's/env CGO_CFLAGS_ALLOW/go mod tidy \&\& env CGO_CFLAGS_ALLOW/g' {} \;
         find . -name Makefile -exec sed -i 's/env GOOS/go mod tidy \&\& env GOOS/g' {} \;
         installPrereqs
-        # fixes for k8s build
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/\$\*:\$\(VERSION\)/' intel-secl/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/tagent-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/tagent:\$\(VERSION\)/' trust-agent/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-controller:\$\(VERSION\)/' k8s-extensions/isecl-k8s-controller/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/isecl-k8s-scheduler-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-scheduler:\$\(VERSION\)/' k8s-extensions/isecl-k8s-scheduler/Makefile
-        sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output out\/admission-controller-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar isecl\/k8s-admission-controller:\$\(VERSION\)/' k8s-extensions/admission-controller/Makefile
+	# fixes for k8s build
+	sed -i 's/skopeo copy docker-daemon.*/podman save --format oci-archive --output deployments\/container-archive\/oci\/\$\*-\$\(VERSION\)-\$\(GITCOMMIT\)\.tar localhost\/isecl\/\$\*:\$\(VERSION\)-\$\(GITCOMMIT\)/' intel-secl/Makefile
+	sed -i 's/skopeo copy docker-daemon:isecl\/init-wait.*/podman save --format oci-archive --output init-wait\/init-wait-\$\(VERSION\)\.tar localhost\/isecl\/init-wait:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/nats-init.*/podman save --format oci-archive --output nats\/nats-init-\$\(VERSION\)\.tar localhost\/isecl\/nats-init:\$\(VERSION\)/' utils/tools/containers/Makefile
+        sed -i 's/skopeo copy docker-daemon:isecl\/db-version-upgrade.*/podman save --format oci-archive --output db-version-upgrade\/db-version-upgrade-\$\(DB_VERSION_UPGRADE_11_14\)\.tar localhost\/isecl\/db-version-upgrade:\$\(DB_VERSION_UPGRADE_11_14\)/' utils/tools/containers/Makefile
         # build WS targets
         buildTargets data-sovereignty $paramTarget
     fi

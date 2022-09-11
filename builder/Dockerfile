@@ -1,7 +1,7 @@
-#  Copyright (C) 2021 Intel Corporation
+#  Copyright (C) 2022 Intel Corporation
 #  SPDX-License-Identifier: BSD-3-Clause
 
-FROM fedora:31
+FROM ubuntu:focal
 
 # Containerized build environment for iSecL-DC product
 
@@ -17,10 +17,11 @@ LABEL org.opencontainers.image.license="BSD-3-Clause"
 ARG http_proxy
 ARG https_proxy
 ARG no_proxy
-ARG GO_VERSION=1.16.7
-ARG ISECLRELEASEBRANCH=refs/tags/v5.0.0
+ARG GO_VERSION
+ARG ISECLRELEASEBRANCH
 ARG EXT_USER
 ARG REGISTRY_MIRROR_URL
+ARG MANIFEST
 
 # Bake these settings in for rebuild
 ENV ISECLRELEASEBRANCH=${ISECLRELEASEBRANCH}
@@ -37,10 +38,10 @@ RUN chmod +x /build.sh
 COPY manifest /build-manifest/manifest
 COPY .git /build-manifest/.git
 
+COPY .netrc /root/.netrc
 # 2 - Pre-requisites which are not handled by install scripts
-RUN dnf -yq install dnf-plugins-core git wget python3 yum-utils sudo tpm2-tss openssl-devel tpm2-tss-devel which perl && \
+RUN apt-get update -y && apt-get install -y git build-essential wget python3 sudo libtss2-esys0 libprotobuf-dev libssl-dev  perl makeself && \
     # Protobuf is required for SGX deps
-    dnf install -yq http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/protobuf-3.5.0-13.el8.x86_64.rpm && \
     ln -sf /usr/bin/python3 /usr/bin/python && ln -sf /usr/bin/pip3 /usr/bin/pip && \
     git clone https://gerrit.googlesource.com/git-repo && install -m 755 git-repo/repo /usr/local/bin && rm -rf git-repo && \
     # 3 - Golang \
@@ -48,8 +49,6 @@ RUN dnf -yq install dnf-plugins-core git wget python3 yum-utils sudo tpm2-tss op
     mv go /usr/local && rm -rf "go${GO_VERSION}.linux-amd64.tar.gz" && ln -sf /usr/local/go/bin/* /usr/local/bin/ && go version && \
     # 4 - Prereqs \
     echo "Install & Configure pre-reqs for build" && \
-    # Set OS Type/Version to RHEL 8.2 since this is required to build SKC library
-    sed -i 's/^ID=fedora/ID=rhel/g' /etc/os-release && sed -i 's/^VERSION_ID=31/VERSION_ID=8.2/g' /etc/os-release && sed -i 's/^NAME=Fedora/NAME=\"Red Hat Enterprise Linux\"/g' /etc/os-release && \
     # 5 - Source FS manifest only to install pre-reqs from utils repo
     git config --global user.name "ISecl Builder" && \
     git config --global user.email "isecl.builder@example.org" && \
@@ -60,9 +59,9 @@ RUN dnf -yq install dnf-plugins-core git wget python3 yum-utils sudo tpm2-tss op
     chmod +x /usr/local/bin/swagger && \
     wget -q https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.16/swagger-codegen-cli-3.0.16.jar -O /usr/local/bin/swagger-codegen-cli.jar && \
     # 7 - Preload build pre-reqs from utils
-    echo "Pre-load build-reqs" && mkdir -p /work/ && cd /work && repo init -u /build-manifest/  -b "$ISECLRELEASEBRANCH"  -m manifest/all-components.xml && repo sync --force-sync && /build.sh prereq && \
-    # 8 - Cleanup RPM and pre-reqs artifacts
-    rm -rf /var/cache /var/log/dnf* /var/log/yum.* /work/
+    echo "Pre-load build-reqs" && mkdir -p /work/ && cd /work && repo init -u /build-manifest/  -b "$ISECLRELEASEBRANCH"  -m "$MANIFEST" && repo sync --force-sync && /build.sh prereq && \
+    # 8 - Cleanup apt cache
+    apt-get clean && apt-get autoclean
 ENV _CONTAINERS_USERNS_CONFIGURED=""
 
 ENTRYPOINT [ "/build.sh" ]
