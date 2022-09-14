@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v5.0.0" />
+    <default revision="refs/tags/v5.0.0-Beta" />
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
