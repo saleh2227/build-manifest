@@ -4,10 +4,6 @@
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
-    <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
-
-    <project name="go-trustagent" remote="github.com" path="trust-agent" />
-
     <project name="utils" path="utils" remote="github.com" revision="v5.0/develop">
         <copyfile src="build/data-sovereignty" dest="Makefile" />
     </project>

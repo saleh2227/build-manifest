@@ -4,8 +4,6 @@
 
     <project name="intel-secl" path="intel-secl" remote="github.com" />
 
-    <project name="go-trustagent" path="trust-agent" remote="github.com" />
-
     <project name="utils" path="utils" remote="github.com" revision="v5.0/develop">
         <copyfile src="build/foundational-security/fs" dest="Makefile" />
     </project>
