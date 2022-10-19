@@ -8,74 +8,76 @@ Build-args for development container:
 
 Param Name          | Description                                              | Required | Default Value
 ------------------- | -------------------------------------------------------- | -------- | ----------------
-ISECLRELEASEBRANCH  | Tag or branch name from which manifest files are sourced | No       | refs/tags/v5.0.0
+ISECLRELEASEBRANCH  | Tag or branch name from which manifest files are sourced | No       | refs/tags/v5.0.0-Beta
 GO_VERSION          | Version of GoLang SDK used for builds                    | No       | 1.18.2
 EXT_USER            | Runtime user which should own the built artifacts        | No       | root
 REGISTRY_MIRROR_URL | URL for registry mirror for fetching container images    | No       | root
-MANIFEST            | manifest filename e.g manifest/tee.xml                   | Yes      | 
-
-Copy .netrc to build-manifest directory
+MANIFEST            | manifest filename e.g manifest/all-components.xml        | Yes      | 
 
 Build the development container supplying proxy information if needed:
-
 ```shell
-cd applications.security.isecl.tools.build-manifest
+cd build-manifest
 docker build \
- --build-arg http_proxy=<proxy-url> \
- --build-arg https_proxy=<proxy-url> \
  --build-arg ISECLRELEASEBRANCH=<branch/tag> \
- --build-arg MANIFEST=manifest/tee.xml
+ --build-arg MANIFEST=manifest/all-components.xml
  --build-arg GO_VERSION=1.18.2
  -t iseclbuilder . \ 
  -f builder/Dockerfile
 ```
 
-Use the development container to obtain the binaries, OCI images of ISecL components as needed.
+*NOTE:* Add the proxy configuration if proxy is configured behind network using --build-arg
 
+
+Use the development container to obtain the binaries, OCI images of ISecL components as needed.
 ```shell
 mkdir out
 docker run  --privileged  -v /sys/fs/cgroup:/sys/fs/cgroup \         
 --security-opt seccomp=unconfined \
 --security-opt apparmor=unconfined \
--e http_proxy=$http_proxy \
--e https_proxy=$https_proxy \
--e no_proxy=$no_proxy \
 -v `pwd`/out:/out/ \
  iseclbuilder \
- [-u <usecase>] [-t <target>]
+ [-u <usecase>] -t img
 ```
+
+Supported usecases: 
+Usecase option   | Usecase                      |
+---------------- | ---------------------------- |
+all              | All supported usecases       |
+fs               | Foundational Security        |
+ds               | Data Sovereignty             | 
+crio             | Workload Security with crio  |
+
+*NOTE:* Add the proxy configuration if proxy is configured behind network using -e option
 
 ### For Ubuntu 22.04 system please use podman command as below
 ```shell
-cd applications.security.isecl.tools.build-manifest
+cd build-manifest
 podman build \
- --build-arg http_proxy=<proxy-url> \
- --build-arg https_proxy=<proxy-url> \
  --build-arg ISECLRELEASEBRANCH=<branch/tag> \
- --build-arg MANIFEST=manifest/tee.xml
+ --build-arg MANIFEST=manifest/all-components.xml
  --build-arg GO_VERSION=1.18.2
  -t iseclbuilder . \ 
  -f builder/Dockerfile
 ```
 
- Use the development container to obtain the binaries, OCI images of ISecL components as needed.
+*NOTE:* Add the proxy configuration if proxy is configured behind network using --build-arg
+
+Use the development container to obtain the binaries, OCI images of ISecL components as needed.
 
 ```shell
 mkdir out
 podman run  --privileged  -v /sys/fs/cgroup:/sys/fs/cgroup \         
 --security-opt seccomp=unconfined \
 --security-opt apparmor=unconfined \
--e http_proxy=$http_proxy \
--e https_proxy=$https_proxy \
 -e no_proxy=$no_proxy \
 -v `pwd`/out:/out/ \
  iseclbuilder \
- [-u <usecase>] [-t <target>]
+ [-u <usecase>] -t img
 ```
 
 
-The container images would be available in applications.security.isecl.tools.build-manifest/out/<usecase>/k8s/images/
-_Note: The dev container requires privileged access since **podman** tool, requires these permissions to build container images inside container.
+The container images would be available in build-manifest/out/<usecase>/k8s/images/
+*Note:* The dev container requires privileged access since **podman** tool, requires these permissions to build container images inside container.  Add the proxy configuration if proxy is configured behind network using -e option
 
 Refer to the usage documentation on the iseclbuilder for more information on usecases and targets:
 

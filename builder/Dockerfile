@@ -25,9 +25,6 @@ ARG MANIFEST
 
 # Bake these settings in for rebuild
 ENV ISECLRELEASEBRANCH=${ISECLRELEASEBRANCH}
-ENV http_proxy=${http_proxy}
-ENV https_proxy=${https_proxy}
-ENV no_proxy=${no_proxy}
 ENV GOPATH=/go/
 ENV EXT_USER=${EXT_USER}
 
@@ -38,7 +35,6 @@ RUN chmod +x /build.sh
 COPY manifest /build-manifest/manifest
 COPY .git /build-manifest/.git
 
-COPY .netrc /root/.netrc
 # 2 - Pre-requisites which are not handled by install scripts
 RUN apt-get update -y && apt-get install -y git build-essential wget python3 sudo libtss2-esys0 libprotobuf-dev libssl-dev  perl makeself && \
     # Protobuf is required for SGX deps
