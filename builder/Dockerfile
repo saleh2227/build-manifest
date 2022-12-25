@@ -1,4 +1,4 @@
-#  Copyright (C) 2021 Intel Corporation
+#  Copyright (C) 2022 Intel Corporation
 #  SPDX-License-Identifier: BSD-3-Clause
 
 FROM ubuntu:focal
@@ -17,16 +17,14 @@ LABEL org.opencontainers.image.license="BSD-3-Clause"
 ARG http_proxy
 ARG https_proxy
 ARG no_proxy
-ARG GO_VERSION=1.16.7
-ARG ISECLRELEASEBRANCH=refs/tags/v4.2.0-Beta
+ARG GO_VERSION
+ARG ISECLRELEASEBRANCH
 ARG EXT_USER
 ARG REGISTRY_MIRROR_URL
+ARG MANIFEST
 
 # Bake these settings in for rebuild
 ENV ISECLRELEASEBRANCH=${ISECLRELEASEBRANCH}
-ENV http_proxy=${http_proxy}
-ENV https_proxy=${https_proxy}
-ENV no_proxy=${no_proxy}
 ENV GOPATH=/go/
 ENV EXT_USER=${EXT_USER}
 
@@ -57,7 +55,7 @@ RUN apt-get update -y && apt-get install -y git build-essential wget python3 sud
     chmod +x /usr/local/bin/swagger && \
     wget -q https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.16/swagger-codegen-cli-3.0.16.jar -O /usr/local/bin/swagger-codegen-cli.jar && \
     # 7 - Preload build pre-reqs from utils
-    echo "Pre-load build-reqs" && mkdir -p /work/ && cd /work && repo init -u /build-manifest/  -b "$ISECLRELEASEBRANCH"  -m manifest/all-components.xml && repo sync --force-sync && /build.sh prereq && \
+    echo "Pre-load build-reqs" && mkdir -p /work/ && cd /work && repo init -u /build-manifest/  -b "$ISECLRELEASEBRANCH"  -m "$MANIFEST" && repo sync --force-sync && /build.sh prereq && \
     # 8 - Cleanup apt cache
     apt-get clean && apt-get autoclean
 ENV _CONTAINERS_USERNS_CONFIGURED=""

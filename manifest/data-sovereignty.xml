@@ -1,14 +1,10 @@
 <manifest>
     <remote name="github.com" fetch="https://github.com/intel-secl/" />
-    <default revision="refs/tags/v4.2.0-Beta" />
+    <default revision="refs/tags/v5.1.0" />
 
     <project name="intel-secl" remote="github.com" path="intel-secl" />
 
-    <project name="k8s-extensions" remote="github.com" path="k8s-extensions" />
-
-    <project name="go-trustagent" remote="github.com" path="trust-agent" />
-
-    <project name="utils" path="utils" remote="github.com" revision="v4.2/develop">
+    <project name="utils" path="utils" remote="github.com" revision="v5.1/develop">
         <copyfile src="build/data-sovereignty" dest="Makefile" />
     </project>
 

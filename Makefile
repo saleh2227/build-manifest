@@ -4,7 +4,7 @@
 PROXY_EXISTS := $(shell if [[ "${https_proxy}" || "${http_proxy}" || "${no_proxy}" ]]; then echo 1; else echo 0; fi)
 DOCKERBUILD_PROXY_FLAGS := ""
 DOCKERRUN_PROXY_FLAGS := ""
-VERSION := "v4.2.0"
+VERSION := "v5.0.0"
 IMGTAG := "iseclbuilder:${VERSION}"
 DOCKERRUN_PRIV_FLAGS := --privileged  --security-opt seccomp=unconfined --security-opt apparmor=unconfined
 DOCKERRUN_MOUNT_FLAGS := -v `pwd`/out/:/out/
